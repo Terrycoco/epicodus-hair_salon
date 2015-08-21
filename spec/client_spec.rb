@@ -47,16 +47,16 @@ describe(Client) do
 
     end
   end
-  #
-  # describe('#update') do
-  #   it('updates a client') do
-  #     client = client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
-  #     client.save()
-  #     client.update({:firstname => 'Abbey'})
-  #     expect(client.firstname()).to(eq('Abbey'))
-  #   end
-  # end
-  #
+
+  describe('#update') do
+    it('updates a client') do
+      client = Client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
+      client.save()
+      client.update({:firstname => 'Hairy'})
+      expect(client.firstname()).to(eq('Hairy'))
+    end
+  end
+
   # describe('#delete') do
   #   it('deletes a client') do
   #     client = client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})

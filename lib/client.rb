@@ -43,15 +43,15 @@ class Client
       return nil
     end
   end
-  #
-  # define_method(:update) do |attributes|
-  #   @firstname = attributes.fetch(:firstname, @firstname)
-  #   @lastname = attributes.fetch(:lastname, @lastname)
-  #   DB.exec("UPDATE clients SET firstname = '#{@firstname}', lastname = '#{@lastname}'
-  #      WHERE client_id = #{@id}")
-  # end
-  #
-  #
+  
+  define_method(:update) do |attributes|
+    @firstname = attributes.fetch(:firstname, @firstname)
+    @lastname = attributes.fetch(:lastname, @lastname)
+    DB.exec("UPDATE clients SET firstname = '#{@firstname}', lastname = '#{@lastname}'
+       WHERE client_id = #{@id}")
+  end
+
+
   # define_method(:delete) do
   #   DB.exec("DELETE from clients WHERE client_id = #{@id};")
   # end
