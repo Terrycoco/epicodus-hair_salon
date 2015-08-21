@@ -1,6 +1,7 @@
 require('rspec')
 require('stylist')
 require('pg')
+require('pry')
 
 DB = PG.connect({:dbname => 'hair_salon_test'})
 
@@ -42,7 +43,10 @@ describe(Stylist) do
       stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
       stylist.save()
       id = stylist.id()
+      found = Stylist.find(1)
+      binding.pry
       expect(Stylist.find(id)).to(eq(stylist))
+
     end
   end
 
@@ -52,6 +56,16 @@ describe(Stylist) do
       stylist.save()
       stylist.update({:firstname => 'Abbey'})
       expect(stylist.firstname()).to(eq('Abbey'))
+    end
+  end
+
+  describe('#delete') do
+    it('deletes a stylist') do
+      stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
+      stylist.save()
+      id = stylist.id
+      stylist.delete()
+      expect(Stylist.find(id)).to(eq(nil))
     end
   end
 

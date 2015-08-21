@@ -33,11 +33,15 @@ class Stylist
 
   define_singleton_method(:find) do |id|
     result = DB.exec("SELECT * from stylists where stylist_id = #{id};")
-    firstname = result.first().fetch("firstname")
-    lastname = result.first().fetch("lastname")
-    id = result.first().fetch("stylist_id").to_i()
-    stylist = Stylist.new({:firstname => firstname, :lastname => lastname, :id => id})
-    return stylist
+    if result.cmd_tuples().>(0)
+      firstname = result.first().fetch("firstname")
+      lastname = result.first().fetch("lastname")
+      id = result.first().fetch("stylist_id").to_i()
+      stylist = Stylist.new({:firstname => firstname, :lastname => lastname, :id => id})
+      return stylist
+    else
+      return nil
+    end
   end
 
   define_method(:update) do |attributes|
@@ -47,6 +51,10 @@ class Stylist
        WHERE stylist_id = #{@id}")
   end
 
+
+  define_method(:delete) do
+    DB.exec("DELETE from stylists WHERE stylist_id = #{@id};")
+  end
 
 
 end #end class
