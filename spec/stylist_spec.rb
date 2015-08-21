@@ -37,5 +37,22 @@ describe(Stylist) do
     end
   end
 
+  describe('.find') do
+    it('finds a stylist by id') do
+      stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
+      stylist.save()
+      id = stylist.id()
+      expect(Stylist.find(id)).to(eq(stylist))
+    end
+  end
+
+  describe('#update') do
+    it('updates a stylist') do
+      stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
+      stylist.save()
+      stylist.update({:firstname => 'Abbey'})
+      expect(stylist.firstname()).to(eq('Abbey'))
+    end
+  end
 
 end
