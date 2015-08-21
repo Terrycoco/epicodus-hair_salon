@@ -56,5 +56,24 @@ class Stylist
     DB.exec("DELETE from stylists WHERE stylist_id = #{@id};")
   end
 
+  define_method(:clients) do
+    results = DB.exec("SELECT * from clients where stylist_id = #{@id}")
+    clients = []
+    results.each() do |row|
+      firstname = row.fetch("firstname")
+      lastname = row.fetch("lastname")
+      id = row.fetch("client_id").to_i()
+      client = Client.new({:firstname => firstname, :lastname => lastname, :id => id})
+      clients.push(client)
+    end
+    clients
+  end
+
+  define_method(:add_client) do |client|
+    cid = client.id
+    DB.exec("UPDATE clients SET stylist_id = #{@id} WHERE client_id =#{cid};")
+  end
+
+
 
 end #end class
