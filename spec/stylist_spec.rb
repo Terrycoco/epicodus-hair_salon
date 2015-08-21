@@ -27,7 +27,15 @@ describe(Stylist) do
     end
   end
 
-
+  describe('.all') do
+    it('returns all stylists from db') do
+      stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
+      stylist.save()
+      stylist2 = Stylist.new({:firstname => 'Edward', :lastname => 'Scissorhands', :id => nil})
+      stylist2.save()
+      expect((Stylist.all).length()).to(eq(2))
+    end
+  end
 
 
 end
