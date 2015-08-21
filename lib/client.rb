@@ -14,31 +14,31 @@ class Client
       @id = result.first().fetch("client_id").to_i();
   end
 
-  # define_singleton_method(:all) do
-  #   stylists = []
-  #   result = DB.exec("SELECT * from stylists;")
-  #   result.each() do |row|
-  #     firstname = row.fetch("firstname")
-  #     lastname = row.fetch("lastname")
-  #     id = row.fetch("stylist_id")
-  #     stylist = Stylist.new({:firstname => firstname, :lastname => lastname, :id => id})
-  #     stylists.push(stylist)
-  #   end
-  #   return stylists
-  # end
+  define_singleton_method(:all) do
+    clients = []
+    result = DB.exec("SELECT * from clients;")
+    result.each() do |row|
+      firstname = row.fetch("firstname")
+      lastname = row.fetch("lastname")
+      id = row.fetch("client_id")
+      client = Client.new({:firstname => firstname, :lastname => lastname, :id => id})
+      clients.push(client)
+    end
+    return clients
+  end
   #
-  # define_method(:==) do |other_stylist|
-  #   self.id().==other_stylist.id
+  # define_method(:==) do |other_client|
+  #   self.id().==other_client.id
   # end
   #
   # define_singleton_method(:find) do |id|
-  #   result = DB.exec("SELECT * from stylists where stylist_id = #{id};")
+  #   result = DB.exec("SELECT * from clients where client_id = #{id};")
   #   if result.cmd_tuples().>(0)
   #     firstname = result.first().fetch("firstname")
   #     lastname = result.first().fetch("lastname")
-  #     id = result.first().fetch("stylist_id").to_i()
-  #     stylist = Stylist.new({:firstname => firstname, :lastname => lastname, :id => id})
-  #     return stylist
+  #     id = result.first().fetch("client_id").to_i()
+  #     client = client.new({:firstname => firstname, :lastname => lastname, :id => id})
+  #     return client
   #   else
   #     return nil
   #   end
@@ -47,13 +47,13 @@ class Client
   # define_method(:update) do |attributes|
   #   @firstname = attributes.fetch(:firstname, @firstname)
   #   @lastname = attributes.fetch(:lastname, @lastname)
-  #   DB.exec("UPDATE stylists SET firstname = '#{@firstname}', lastname = '#{@lastname}'
-  #      WHERE stylist_id = #{@id}")
+  #   DB.exec("UPDATE clients SET firstname = '#{@firstname}', lastname = '#{@lastname}'
+  #      WHERE client_id = #{@id}")
   # end
   #
   #
   # define_method(:delete) do
-  #   DB.exec("DELETE from stylists WHERE stylist_id = #{@id};")
+  #   DB.exec("DELETE from clients WHERE client_id = #{@id};")
   # end
 
 end  #end class

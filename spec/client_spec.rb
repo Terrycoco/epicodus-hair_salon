@@ -14,7 +14,7 @@ end
 describe(Client) do
 
   describe('#initialize') do
-    it('creates a new stylist object') do
+    it('creates a new client object') do
       client = Client.new({:firstname => 'Hairy', :lastname => 'Mess', :id => nil})
       expect(client.firstname).to(eq('Hairy'))
     end
@@ -22,50 +22,50 @@ describe(Client) do
 
   describe('#save') do
     it('save client to db') do
-      client = Client.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
+      client = Client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
       client.save()
       expect(client.id).to(be_an_instance_of(Fixnum))
     end
   end
-  #
-  # describe('.all') do
-  #   it('returns all stylists from db') do
-  #     stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
-  #     stylist.save()
-  #     stylist2 = Stylist.new({:firstname => 'Edward', :lastname => 'Scissorhands', :id => nil})
-  #     stylist2.save()
-  #     expect((Stylist.all).length()).to(eq(2))
-  #   end
-  # end
+
+  describe('.all') do
+    it('returns all clients from db') do
+      client = Client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
+      client.save()
+      client2 = Client.new({:firstname => 'Edward', :lastname => 'Scissorhands', :id => nil})
+      client2.save()
+      expect((Client.all).length()).to(eq(2))
+    end
+  end
   #
   # describe('.find') do
-  #   it('finds a stylist by id') do
-  #     stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
-  #     stylist.save()
-  #     id = stylist.id()
-  #     found = Stylist.find(1)
+  #   it('finds a client by id') do
+  #     client = client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
+  #     client.save()
+  #     id = client.id()
+  #     found = client.find(1)
   #     binding.pry
-  #     expect(Stylist.find(id)).to(eq(stylist))
+  #     expect(client.find(id)).to(eq(client))
   #
   #   end
   # end
   #
   # describe('#update') do
-  #   it('updates a stylist') do
-  #     stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
-  #     stylist.save()
-  #     stylist.update({:firstname => 'Abbey'})
-  #     expect(stylist.firstname()).to(eq('Abbey'))
+  #   it('updates a client') do
+  #     client = client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
+  #     client.save()
+  #     client.update({:firstname => 'Abbey'})
+  #     expect(client.firstname()).to(eq('Abbey'))
   #   end
   # end
   #
   # describe('#delete') do
-  #   it('deletes a stylist') do
-  #     stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
-  #     stylist.save()
-  #     id = stylist.id
-  #     stylist.delete()
-  #     expect(Stylist.find(id)).to(eq(nil))
+  #   it('deletes a client') do
+  #     client = client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
+  #     client.save()
+  #     id = client.id
+  #     client.delete()
+  #     expect(client.find(id)).to(eq(nil))
   #   end
   # end
 
