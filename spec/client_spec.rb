@@ -57,14 +57,14 @@ describe(Client) do
     end
   end
 
-  # describe('#delete') do
-  #   it('deletes a client') do
-  #     client = client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
-  #     client.save()
-  #     id = client.id
-  #     client.delete()
-  #     expect(client.find(id)).to(eq(nil))
-  #   end
-  # end
+  describe('#delete') do
+    it('deletes a client') do
+      client = Client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
+      client.save()
+      id = client.id
+      client.delete()
+      expect(Client.find(id)).to(eq(nil))
+    end
+  end
 
 end
