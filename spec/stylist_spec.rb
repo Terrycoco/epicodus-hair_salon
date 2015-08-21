@@ -19,6 +19,13 @@ describe(Stylist) do
     end
   end
 
+  describe('#save') do
+    it('save stylist to db') do
+      stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
+      stylist.save()
+      expect(stylist.id).to(be_an_instance_of(Fixnum))
+    end
+  end
 
 
 

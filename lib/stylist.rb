@@ -8,6 +8,10 @@ class Stylist
     @fullname = @firstname + ' ' + @lastname
   end
 
-
+  define_method(:save) do
+    result = DB.exec("INSERT INTO stylists (firstname, lastname)
+      VALUES ('#{@firstname}', '#{@lastname}') RETURNING stylist_id;")
+      @id = result.first().fetch("stylist_id").to_i();
+  end
 
 end #end class
