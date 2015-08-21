@@ -16,7 +16,7 @@ class Client
 
   define_singleton_method(:all) do
     clients = []
-    result = DB.exec("SELECT * from clients;")
+    result = DB.exec("SELECT * from clients ORDER BY lastname, firstname;")
     result.each() do |row|
       firstname = row.fetch("firstname")
       lastname = row.fetch("lastname")

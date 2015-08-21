@@ -5,7 +5,6 @@ class Stylist
     @firstname = attributes.fetch(:firstname)
     @lastname = attributes.fetch(:lastname)
     @id = attributes.fetch(:id)
-    @fullname = @firstname + ' ' + @lastname
   end
 
   define_method(:save) do
@@ -16,7 +15,7 @@ class Stylist
 
   define_singleton_method(:all) do
     stylists = []
-    result = DB.exec("SELECT * from stylists;")
+    result = DB.exec("SELECT * from stylists ORDER BY lastname, firstname;")
     result.each() do |row|
       firstname = row.fetch("firstname")
       lastname = row.fetch("lastname")
@@ -57,7 +56,7 @@ class Stylist
   end
 
   define_method(:clients) do
-    results = DB.exec("SELECT * from clients where stylist_id = #{@id}")
+    results = DB.exec("SELECT * from clients where stylist_id = #{@id} ORDER BY lastname, firstname")
     clients = []
     results.each() do |row|
       firstname = row.fetch("firstname")
@@ -77,6 +76,14 @@ class Stylist
   define_method(:drop_client) do |client|
     cid = client.id
     DB.exec("UPDATE clients set stylist_id = NULL WHERE client_id = #{cid}")
+  end
+
+  define_method(:lastfirst) do
+    @lastname + ', '  + @firstname
+  end
+
+  define_method(:fullname) do
+    @firstname + ' ' + @lastname
   end
 
 end #end class
