@@ -48,4 +48,17 @@ describe(Client) do
         expect(client.stylist()).to(eq(nil))
     end
   end
+
+  describe('#set_stylist') do
+    it('updates the stylist for client') do
+      client = Client.new({:firstname => 'Hairy', :lastname => 'Mess', :id=> nil})
+      client.save()
+      stylist = Stylist.new({:firstname => 'Edward', :lastname => 'Scissorhands', :id=> nil})
+      stylist.save()
+      client.set_stylist(stylist)
+      expect(client.stylist()).to(eq(stylist))
+    end
+  end
+
+
 end

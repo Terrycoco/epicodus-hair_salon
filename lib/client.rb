@@ -69,4 +69,9 @@ class Client
      return stylist
   end
 
+  define_method(:set_stylist) do |stylist|
+    sid = stylist.id
+    DB.exec("UPDATE clients SET stylist_id = #{sid} WHERE client_id =#{@id}")
+  end
+
 end  #end class
