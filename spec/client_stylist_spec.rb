@@ -36,3 +36,16 @@ describe(Stylist) do
     end
 
 end
+
+describe(Client) do
+
+  describe('#stylist') do
+    it('should be nil at first') do
+        client = Client.new({:firstname => 'Hairy', :lastname => 'Mess', :id=> nil})
+        client.save()
+        stylist = Stylist.new({:firstname => 'Edward', :lastname => 'Scissorhands', :id=> nil})
+        stylist.save()
+        expect(client.stylist()).to(eq(nil))
+    end
+  end
+end

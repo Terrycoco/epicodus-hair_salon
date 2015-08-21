@@ -79,5 +79,4 @@ class Stylist
     DB.exec("UPDATE clients set stylist_id = NULL WHERE client_id = #{cid}")
   end
 
-
 end #end class

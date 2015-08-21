@@ -56,4 +56,17 @@ class Client
     DB.exec("DELETE from clients WHERE client_id = #{@id};")
   end
 
+  define_method(:stylist) do
+    stylist = nil
+    result = DB.exec("SELECT * from stylists INNER JOIN clients on stylists.stylist_id = clients.stylist_id
+       WHERE clients.client_id = #{@id};")
+     if result.cmd_tuples().==(1)
+       sid = result.first().fetch("stylist_id").to_i()
+       firstname = result.first().fetch("firstname")
+       lastname = result.first().fetch("lastname")
+       stylist = Stylist.new({:firstname => firstname, :lastname => lastname, :id => sid})
+     end
+     return stylist
+  end
+
 end  #end class
