@@ -5,7 +5,6 @@ class Client
     @firstname = attributes.fetch(:firstname)
     @lastname = attributes.fetch(:lastname)
     @id = attributes.fetch(:id)
-    @fullname = @firstname + ' ' + @lastname
   end
 
   define_method(:save) do
@@ -25,6 +24,11 @@ class Client
       clients.push(client)
     end
     return clients
+  end
+
+
+  define_method(:lastfirst) do
+    @lastname + ', ' +  @firstname
   end
 
   define_method(:==) do |other_client|

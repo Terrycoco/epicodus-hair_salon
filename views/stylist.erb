@@ -1,0 +1,37 @@
+<a class="btn btn-primary" href="/">Back</a>
+<br>
+
+<h2>Stylist Details</h2>
+
+<form role="form" class="form-horizontal" action="/client/<%= @stylist.id %>" method="post">
+  <div class="form-group">
+    <label class="control-label" for="firstname">First Name</label>
+    <input class="form-control" type="text" name="firstname" value="<%= @stylist.firstname %>">
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="lastname">Last Name</label>
+    <input class="form-control" type="text" name="lastname" value="<%= @stylist.lastname %>">
+  </div>
+  <button class="btn btn-primary" type="submit" name="button">Save</button>
+  <a class="btn btn-primary" href="/stylist/<%= @stylist.id %>/delete" method="post">Delete Stylist</a>
+</form>
+
+
+<h2>Clients for <%= @stylist.fullname %></h2>
+  <ul class="list-group">
+    <% if @stylist.clients().any?() %>
+      <% @stylist.clients().each() do |myclient| %>
+        <li class="list-group-item"><a href="client/<%= myclient.id() %>"><%= myclient.lastfirst() %></a></li>
+      <% end %>
+    <% end %>
+</ul>
+
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add Client to Stylist
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <% @client_list.each() do |client| %>
+    <li><a href="/stylist/<%= @stylist.id %>/add_client/<%= client.id %>"><%= client.lastname %>, <%= client.firstname %></a></li>
+    <% end %>
+  </ul>
+</div>

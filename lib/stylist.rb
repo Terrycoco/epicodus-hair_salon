@@ -52,6 +52,7 @@ class Stylist
 
 
   define_method(:delete) do
+    DB.exec("UPDATE clients SET stylist_id = NULL WHERE stylist_id = #{@id};")
     DB.exec("DELETE from stylists WHERE stylist_id = #{@id};")
   end
 

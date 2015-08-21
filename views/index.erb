@@ -4,13 +4,12 @@
       <h2>Stylists</h2>
         <ul>
           <% @stylists.each() do |stylist| %>
-            <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.lastfirst() %></a></li>
+            <li><a href="/stylist/<%= stylist.id() %>"><%= stylist.lastname %>, <%= stylist.firstname %></a></li>
           <% end %>
       </ul>
     </div>
     <div class="col-lg-6" >
-        <div class="container">
-        <form role="form" class="form-horizontal" action="/" method="post">
+        <form role="form" class="form-horizontal" action="/newstylist" method="post">
           <div class="form-group">
             <label class="control-label" for="firstname">First Name</label>
             <input class="form-control" type="text" name="firstname">
@@ -19,8 +18,31 @@
             <label class="control-label" for="lastname">Last Name</label>
             <input class="form-control" type="text" name="lastname">
           </div>
-          <button type="submit" name="button">Add Stylist</button>
+          <button type="submit" name="button">Add New Stylist</button>
         </form>
-      </div>
     </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <h2>Clients</h2>
+      <ul>
+        <% @client_list.each() do |client| %>
+          <li><a href="/client/<%= client.id() %>"><%= client.lastname %>, <%= client.firstname %></a></li>
+        <% end %>
+    </ul>
+  </div>
+  <div class="col-lg-6" >
+      <form role="form" class="form-horizontal" action="/newclient" method="post">
+        <div class="form-group">
+          <label class="control-label" for="c_firstname">First Name</label>
+          <input class="form-control" type="text" name="c_firstname">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="c_lastname">Last Name</label>
+          <input class="form-control" type="text" name="c_lastname">
+        </div>
+        <button type="submit" name="button">Add New Client</button>
+      </form>
+  </div>
 </div>
