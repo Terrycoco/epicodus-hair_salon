@@ -26,23 +26,23 @@ class Client
     end
     return clients
   end
-  #
-  # define_method(:==) do |other_client|
-  #   self.id().==other_client.id
-  # end
-  #
-  # define_singleton_method(:find) do |id|
-  #   result = DB.exec("SELECT * from clients where client_id = #{id};")
-  #   if result.cmd_tuples().>(0)
-  #     firstname = result.first().fetch("firstname")
-  #     lastname = result.first().fetch("lastname")
-  #     id = result.first().fetch("client_id").to_i()
-  #     client = client.new({:firstname => firstname, :lastname => lastname, :id => id})
-  #     return client
-  #   else
-  #     return nil
-  #   end
-  # end
+
+  define_method(:==) do |other_client|
+    self.id().==other_client.id
+  end
+
+  define_singleton_method(:find) do |id|
+    result = DB.exec("SELECT * from clients where client_id = #{id};")
+    if result.cmd_tuples().>(0)
+      firstname = result.first().fetch("firstname")
+      lastname = result.first().fetch("lastname")
+      id = result.first().fetch("client_id").to_i()
+      client = Client.new({:firstname => firstname, :lastname => lastname, :id => id})
+      return client
+    else
+      return nil
+    end
+  end
   #
   # define_method(:update) do |attributes|
   #   @firstname = attributes.fetch(:firstname, @firstname)

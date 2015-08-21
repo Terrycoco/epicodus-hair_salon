@@ -37,18 +37,16 @@ describe(Client) do
       expect((Client.all).length()).to(eq(2))
     end
   end
-  #
-  # describe('.find') do
-  #   it('finds a client by id') do
-  #     client = client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
-  #     client.save()
-  #     id = client.id()
-  #     found = client.find(1)
-  #     binding.pry
-  #     expect(client.find(id)).to(eq(client))
-  #
-  #   end
-  # end
+
+  describe('.find') do
+    it('finds a client by id') do
+      client = Client.new({:firstname => 'Harry', :lastname => 'Mess', :id => nil})
+      client.save()
+      id = client.id()
+      expect(Client.find(id)).to(eq(client))
+
+    end
+  end
   #
   # describe('#update') do
   #   it('updates a client') do
