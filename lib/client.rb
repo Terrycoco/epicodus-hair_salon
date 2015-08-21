@@ -8,12 +8,12 @@ class Client
     @fullname = @firstname + ' ' + @lastname
   end
 
-  # define_method(:save) do
-  #   result = DB.exec("INSERT INTO stylists (firstname, lastname)
-  #     VALUES ('#{@firstname}', '#{@lastname}') RETURNING stylist_id;")
-  #     @id = result.first().fetch("stylist_id").to_i();
-  # end
-  #
+  define_method(:save) do
+    result = DB.exec("INSERT INTO clients (firstname, lastname)
+      VALUES ('#{@firstname}', '#{@lastname}') RETURNING client_id;")
+      @id = result.first().fetch("client_id").to_i();
+  end
+
   # define_singleton_method(:all) do
   #   stylists = []
   #   result = DB.exec("SELECT * from stylists;")

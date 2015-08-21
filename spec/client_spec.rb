@@ -20,13 +20,13 @@ describe(Client) do
     end
   end
 
-  # describe('#save') do
-  #   it('save stylist to db') do
-  #     stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
-  #     stylist.save()
-  #     expect(stylist.id).to(be_an_instance_of(Fixnum))
-  #   end
-  # end
+  describe('#save') do
+    it('save client to db') do
+      client = Client.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
+      client.save()
+      expect(client.id).to(be_an_instance_of(Fixnum))
+    end
+  end
   #
   # describe('.all') do
   #   it('returns all stylists from db') do
