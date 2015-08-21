@@ -74,6 +74,10 @@ class Stylist
     DB.exec("UPDATE clients SET stylist_id = #{@id} WHERE client_id =#{cid};")
   end
 
+  define_method(:drop_client) do |client|
+    cid = client.id
+    DB.exec("UPDATE clients set stylist_id = NULL WHERE client_id = #{cid}")
+  end
 
 
 end #end class
