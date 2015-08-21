@@ -43,10 +43,7 @@ describe(Stylist) do
       stylist = Stylist.new({:firstname => 'Abigail', :lastname => 'Doe', :id => nil})
       stylist.save()
       id = stylist.id()
-      found = Stylist.find(1)
-      binding.pry
       expect(Stylist.find(id)).to(eq(stylist))
-
     end
   end
 
